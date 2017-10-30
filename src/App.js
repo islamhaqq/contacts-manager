@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 
+import ListContacts from './components/ListContacts'
+import contacts from './utils/dummy-contacts-data'
+
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>Hey Mama!</h1>
+        <ListContacts contacts={contacts} />
       </div>
     );
   }
