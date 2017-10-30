@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 /**
  * All contacts with their details listed out in an ordered list.
@@ -27,5 +28,8 @@ function ListContacts ({contacts}) {
     </ol>
   )
 }
+
+// validate and type check
+ListContacts.propTypes = { contacts: PropTypes.array.isRequired }
 
 export default ListContacts
