@@ -7,10 +7,10 @@ import PropTypes from 'prop-types'
  * @param {Array} contacts - All the contacts to list out.
  * @constructor
  */
-function ListContacts ({contacts}) {
+function ListContacts (props) {
   return (
     <ol className="contact-list">
-      {contacts.map(contact => (
+      {props.contacts.map(contact => (
         <li key={contact.id} className="contact-list-item">
           {/* Avatar. */}
           <div className="contact-avatar" style={{ backgroundImage: `url(${contact.avatarURL})` }} />
@@ -22,7 +22,12 @@ function ListContacts ({contacts}) {
           </div>
 
           {/* Remove contact button. */}
-          <button className="contact-remove">Remove</button>
+          <button
+            onClick={() => props.onDeleteContact(contact)}
+            className="contact-remove"
+          >
+            Remove
+          </button>
         </li>
       ))}
     </ol>

@@ -21,11 +21,27 @@ class App extends Component {
     contacts
   }
 
+  /**
+   * Deletes a contact.
+   * @method deleteContact
+   * @param  {Object} contactToDelete - The contact the user intends to delete.
+   * @return {Void}
+   */
+  deleteContact = contactToDelete => {
+    this.setState(currentState => ({
+      // filter out the deleted contact
+      contacts: currentState.contacts.filter(contact => contactToDelete.id !== contact.id)
+    }))
+  }
+
   render() {
     return (
       <div className="App">
         {/* List of contacts. */}
-        <ListContacts contacts={this.state.contacts} />
+        <ListContacts
+          contacts={this.state.contacts}
+          onDeleteContact={this.deleteContact}
+        />
       </div>
     )
   }
