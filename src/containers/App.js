@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
-import ListContacts from './components/ListContacts'
-import contacts from './utils/dummy-contacts-data'
+import ListContacts from '../components/ListContacts'
+import contacts from '../utils/dummy-contacts-data'
 
 /**
  * The root component of the app.
