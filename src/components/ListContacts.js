@@ -13,7 +13,10 @@ function ListContacts (props) {
       {props.contacts.map(contact => (
         <li key={contact.id} className="contact-list-item">
           {/* Avatar. */}
-          <div className="contact-avatar" style={{ backgroundImage: `url(${contact.avatarURL})` }} />
+          <div
+            style={{ backgroundImage: `url(${contact.avatarURL})` }}
+            className="contact-avatar"
+          />
 
           {/* Contact details. */}
           <div className="contact-details">
@@ -34,7 +37,7 @@ function ListContacts (props) {
   )
 }
 
-// validate and type check
+// validate and type check props
 ListContacts.propTypes = { contacts: PropTypes.array.isRequired }
 
 export default ListContacts
