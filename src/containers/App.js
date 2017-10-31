@@ -27,8 +27,8 @@ class App extends Component {
         {/* List of contacts. */}
         <ListContacts contacts={this.state.contacts} />
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App
