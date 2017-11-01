@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import ListContacts from './ListContacts'
+import SearchBox from '../components/SearchBox'
 import contacts from '../utils/dummy-contacts-data'
 
 /**
@@ -18,7 +19,9 @@ class App extends Component {
      * All theArrayacts to be listed and rendered out.
      * @type {Array}
      */
-    contacts
+    initialContacts: contacts,
+    filteredContacts: contacts,
+    searchQuery: ''
   }
 
   /**
@@ -30,16 +33,31 @@ class App extends Component {
   deleteContact = contactToDelete => {
     this.setState(currentState => ({
       // filter out the deleted contact
-      contacts: currentState.contacts.filter(contact => contactToDelete.id !== contact.id)
+      initialContacts: currentState.initialContacts.filter(contact => contactToDelete.id !== contact.id),
+      filteredContacts: currentState.initialContacts.filter(contact => contactToDelete.id !== contact.id),
+      searchQuery: ''
+    }))
+  }
+
+  queryContacts = query => {
+    this.setState(currentState => ({
+      searchQuery: query,
+      filteredContacts: currentState.initialContacts.filter(contact => contact.name.toLowerCase().includes(query))
     }))
   }
 
   render() {
     return (
       <div className="App">
+        {/* A search query field that allows users to search for contacts. */}
+        <SearchBox
+          onQuery={this.queryContacts}
+          value={this.state.searchQuery}
+        />
+
         {/* List of contacts. */}
         <ListContacts
-          contacts={this.state.contacts}
+          contacts={this.state.filteredContacts}
           onDeleteContact={this.deleteContact}
         />
       </div>
