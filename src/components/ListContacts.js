@@ -37,7 +37,24 @@ function ListContacts (props) {
   )
 }
 
-// validate and type check props
-ListContacts.propTypes = { contacts: PropTypes.array.isRequired }
+/**
+ * Type checking and validation for props passed to this component. Also serves
+ * as documentation for this component's API.
+ * @type {Object}
+ */
+ListContacts.propTypes = {
+  /**
+   * An array of contact objects that will be iterated through to display
+   * all contacts.
+   * @type {Array}
+   */
+  contacts: PropTypes.array.isRequired,
+  /**
+   * A callback function sent from the parent to be called whenever the user
+   * requests the contact in question to be deleted.
+   * @type {Function}
+   */
+  onDeleteContact: PropTypes.func.isRequired
+}
 
 export default ListContacts
