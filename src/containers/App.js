@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import ListContacts from './ListContacts'
+import ListContacts from '../components/ListContacts'
 import SearchBox from '../components/SearchBox'
 import contacts from '../utils/dummy-contacts-data'
 
