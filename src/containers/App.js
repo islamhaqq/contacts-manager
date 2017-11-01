@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import ListContacts from '../components/ListContacts'
+import ListContacts from './ListContacts'
 import contacts from '../utils/dummy-contacts-data'
 
 /**
