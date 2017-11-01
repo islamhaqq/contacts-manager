@@ -3,9 +3,7 @@ import PropTypes from 'prop-types'
 
 /**
  * All contacts with their details listed out in an ordered list.
- * @method ListContacts
- * @param {Array} contacts - All the contacts to list out.
- * @constructor
+ * @type {Object}
  */
 class ListContacts extends Component {
   /**
