@@ -20,7 +20,7 @@ class App extends Component {
      * All theArrayacts to be listed and rendered out.
      * @type {Array}
      */
-    initialContacts: contacts,
+    allContacts: contacts,
     filteredContacts: contacts,
     searchQuery: ''
   }
@@ -34,8 +34,8 @@ class App extends Component {
   deleteContact = contactToDelete => {
     this.setState(currentState => ({
       // filter out the deleted contact
-      initialContacts: currentState.initialContacts.filter(contact => contactToDelete.id !== contact.id),
-      filteredContacts: currentState.initialContacts.filter(contact => contactToDelete.id !== contact.id),
+      allContacts: currentState.allContacts.filter(contact => contactToDelete.id !== contact.id),
+      filteredContacts: currentState.allContacts.filter(contact => contactToDelete.id !== contact.id),
       searchQuery: ''
     }))
   }
@@ -45,7 +45,7 @@ class App extends Component {
 
     this.setState(currentState => ({
       searchQuery: query,
-      filteredContacts: currentState.initialContacts.filter(contact => matchSearchQuery.test(contact.name))
+      filteredContacts: currentState.allContacts.filter(contact => matchSearchQuery.test(contact.name))
     }))
   }
 
