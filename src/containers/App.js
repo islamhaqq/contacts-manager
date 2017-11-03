@@ -3,7 +3,7 @@ import escapeRegExp from 'escape-string-regexp'
 
 import ListContacts from '../components/ListContacts'
 import SearchBox from '../components/SearchBox'
-import contacts from '../utils/dummy-contacts-data'
+import * as ContactsAPI from '../utils/ContactsAPI'
 
 /**
  * The root component of the app.
@@ -19,12 +19,21 @@ class App extends Component {
     /** All the contacts to be rendered and listed out.
      * @type {Array}
      */
-    allContacts: contacts,
+    allContacts: [],
     /**
      * What the user input in the search box in an attempt to filter contacts.
      * @type {String}
      */
     searchQuery: ''
+  }
+
+  async componentDidMount () {
+    try {
+      const allContacts = await ContactsAPI.getAll()
+      this.setState({ allContacts })
+    } catch (error) {
+      throw new Error(error)
+    }
   }
 
   /**
