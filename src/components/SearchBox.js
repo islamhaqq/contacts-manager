@@ -6,6 +6,7 @@ const SearchBox = ({ onQuery, value }) => {
     value={value}
     type="text"
     placeholder="Search contacts..."
+    className="search-contacts"
   />
 }
 
