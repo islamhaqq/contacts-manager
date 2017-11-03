@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import sortBy from 'sort-by'
 
 /**
  * All contacts with their details listed out in an ordered list.
@@ -7,10 +8,11 @@ import PropTypes from 'prop-types'
  * @param {Array} contacts - All the contacts to list out.
  * @constructor
  */
-function ListContacts (props) {
+function ListContacts ({contacts, onDeleteContact, alphabetize = false}) {
   return (
     <ol className="contact-list">
-      {props.contacts.map(contact => (
+      {/* alphabetize the contacts if requested by the parent component */}
+      {(alphabetize ? contacts.sort(sortBy('name')) : contacts).map(contact => (
         <li key={contact.id} className="contact-list-item">
           {/* Avatar. */}
           <div
@@ -26,7 +28,7 @@ function ListContacts (props) {
 
           {/* Remove contact button. */}
           <button
-            onClick={() => props.onDeleteContact(contact)}
+            onClick={() => onDeleteContact(contact)}
             className="contact-remove"
           >
             Remove
@@ -54,7 +56,12 @@ ListContacts.propTypes = {
    * requests the contact in question to be deleted.
    * @type {Function}
    */
-  onDeleteContact: PropTypes.func.isRequired
+  onDeleteContact: PropTypes.func.isRequired,
+  /**
+   * Whether to alphabetically sort the provided contacts. Defaults to false.
+   * @type {Boolean}
+   */
+  alphabetize: PropTypes.bool
 }
 
 export default ListContacts

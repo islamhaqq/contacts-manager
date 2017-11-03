@@ -62,6 +62,7 @@ class App extends Component {
         <ListContacts
           contacts={this.state.filteredContacts}
           onDeleteContact={this.deleteContact}
+          alphabetize
         />
       </div>
     )
