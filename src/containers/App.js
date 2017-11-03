@@ -54,9 +54,15 @@ class App extends Component {
   }
 
   render() {
-    const matchSearchQuery = new RegExp(escapeRegExp(this.state.searchQuery), 'i')
+    let filteredContacts
+    if (this.state.searchQuery) {
+      const matchSearchQuery = new RegExp(escapeRegExp(this.state.searchQuery), 'i')
 
-    const filteredContacts = this.state.allContacts.filter(contact => matchSearchQuery.test(contact.name))
+      filteredContacts = this.state.allContacts.filter(contact => matchSearchQuery.test(contact.name))
+    } else {
+      filteredContacts = this.state.allContacts
+    }
+
 
     return (
       <div className="App">
