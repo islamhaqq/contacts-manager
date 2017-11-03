@@ -16,12 +16,14 @@ class App extends Component {
    * @type {Object}
    */
   state = {
-    /**rendered and listed outlisted and rendered out.
-     * All theArrayacts to be listed and rendered out.
+    /** All the contacts to be rendered and listed out.
      * @type {Array}
      */
     allContacts: contacts,
-    filteredContacts: contacts,
+    /**
+     * What the user input in the search box in an attempt to filter contacts.
+     * @type {String}
+     */
     searchQuery: ''
   }
 
@@ -35,53 +37,52 @@ class App extends Component {
     this.setState(currentState => ({
       // filter out the deleted contact
       allContacts: currentState.allContacts.filter(contact => contactToDelete.id !== contact.id),
-      filteredContacts: currentState.allContacts.filter(contact => contactToDelete.id !== contact.id),
       searchQuery: ''
-    }))
-  }
-
-  queryContacts = query => {
-    const matchSearchQuery = new RegExp(escapeRegExp(query), 'i')
-
-    this.setState(currentState => ({
-      searchQuery: query,
-      filteredContacts: currentState.allContacts.filter(contact => matchSearchQuery.test(contact.name))
     }))
   }
 
   /**
-   * Clear the input in the search box.
-   * @method clearSearchQuery
+   * Update the input in the search box.
+   * @method updateSearchQuery
+   * @param  {String} query - The new search box input.
    * @return {Void}
    */
-  clearSearchQuery = () => {
+  updateSearchQuery = query => {
     this.setState({
-      searchQuery: ''
+      searchQuery: query
     })
   }
 
   render() {
+    const matchSearchQuery = new RegExp(escapeRegExp(this.state.searchQuery), 'i')
+
+    const filteredContacts = this.state.allContacts.filter(contact => matchSearchQuery.test(contact.name))
+
     return (
       <div className="App">
         {/* A search query field that allows users to search for contacts. */}
         <SearchBox
-          onQuery={this.queryContacts}
+          onQuery={this.updateSearchQuery}
           value={this.state.searchQuery}
         />
 
         {/* display how many contacts showing out of total when filtered */}
-        {this.state.filteredContacts.length !== this.state.allContacts.length &&
+        {filteredContacts.length !== this.state.allContacts.length &&
           (
             <div className="showing-contacts">
-              <span>Now showing {this.state.filteredContacts.length} of {this.state.allContacts.length} contacts</span>
-              <button onClick={this.clearSearchQuery}>Show All</button>
+              <span>
+                Now showing {filteredContacts.length} of {this.state.allContacts.length} contacts
+              </span>
+              <button onClick={() => this.updateSearchQuery('')}>
+                Show All
+              </button>
             </div>
           )
         }
 
         {/* List of contacts. */}
         <ListContacts
-          contacts={this.state.filteredContacts}
+          contacts={filteredContacts}
           onDeleteContact={this.deleteContact}
           alphabetize
         />
