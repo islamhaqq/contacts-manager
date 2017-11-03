@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import escapeRegExp from 'escape-string-regexp'
 
 import ListContacts from '../components/ListContacts'
 import SearchBox from '../components/SearchBox'
@@ -40,9 +41,11 @@ class App extends Component {
   }
 
   queryContacts = query => {
+    const matchSearchQuery = new RegExp(escapeRegExp(query), 'i')
+
     this.setState(currentState => ({
       searchQuery: query,
-      filteredContacts: currentState.initialContacts.filter(contact => contact.name.toLowerCase().includes(query))
+      filteredContacts: currentState.initialContacts.filter(contact => matchSearchQuery.test(contact.name))
     }))
   }
 
