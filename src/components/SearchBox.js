@@ -5,6 +5,7 @@ const SearchBox = ({ onQuery, value }) => {
     onChange={event => onQuery(event.target.value)}
     value={value}
     type="text"
+    placeholder="Search contacts..."
   />
 }
 
