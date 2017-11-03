@@ -49,6 +49,17 @@ class App extends Component {
     }))
   }
 
+  /**
+   * Clear the input in the search box.
+   * @method clearSearchQuery
+   * @return {Void}
+   */
+  clearSearchQuery = () => {
+    this.setState({
+      searchQuery: ''
+    })
+  }
+
   render() {
     return (
       <div className="App">
@@ -63,6 +74,7 @@ class App extends Component {
           (
             <div className="showing-contacts">
               <span>Now showing {this.state.filteredContacts.length} of {this.state.allContacts.length} contacts</span>
+              <button onClick={this.clearSearchQuery}>Show All</button>
             </div>
           )
         }
