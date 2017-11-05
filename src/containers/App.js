@@ -48,6 +48,9 @@ class App extends Component {
       allContacts: currentState.allContacts.filter(contact => contactToDelete.id !== contact.id),
       searchQuery: ''
     }))
+
+    // remove contact from database as well
+    ContactsAPI.remove(contactToDelete)
   }
 
   /**
