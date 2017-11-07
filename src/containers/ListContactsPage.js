@@ -4,7 +4,6 @@ import escapeRegExp from 'escape-string-regexp'
 import ListContacts from '../components/ListContacts'
 import SearchBox from '../components/SearchBox'
 import * as ContactsAPI from '../utils/ContactsAPI'
-import CreateContactPage from './CreateContactPage'
 
 class ListContactsPage extends Component {
   /**
