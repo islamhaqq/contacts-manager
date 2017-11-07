@@ -16,10 +16,24 @@ class App extends Component {
     page: 'list' // ['list', 'create']
   }
 
+  /**
+   * Updates the current page the app is displaying in its view.
+   * @method updatePage
+   * @param  {String} page - The name of the page to display.
+   * @return {Void}
+   */
+  updatePage(page) {
+    this.setState({ page })
+  }
+
   render() {
     return (
       <div className="App">
-        {this.state.page === 'list' && <ListContactsPage />}
+        {this.state.page === 'list' && (
+          <ListContactsPage
+            onNavigate={this.updatePage}
+          />
+        )}
         {this.state.page === 'create' && <CreateContactPage />}
       </div>
     )
