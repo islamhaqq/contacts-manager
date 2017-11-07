@@ -9,8 +9,7 @@ import ListContactsPage from './ListContactsPage'
  */
 class App extends Component {
   /**
-   * ESNext class field designated as component state.
-   * See TC39 proposal: https://github.com/tc39/proposal-class-fields.
+   * The highest level root component state.
    * @type {Object}
    */
   state = {
