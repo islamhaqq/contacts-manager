@@ -4,6 +4,7 @@ import escapeRegExp from 'escape-string-regexp'
 import ListContacts from '../components/ListContacts'
 import SearchBox from '../components/SearchBox'
 import * as ContactsAPI from '../utils/ContactsAPI'
+import CreateContact from './CreateContact'
 
 /**
  * The root component of the app.
@@ -24,7 +25,8 @@ class App extends Component {
      * What the user input in the search box in an attempt to filter contacts.
      * @type {String}
      */
-    searchQuery: ''
+    searchQuery: '',
+    page: 'list' // ['list', 'create']
   }
 
   async componentDidMount () {
@@ -81,6 +83,8 @@ class App extends Component {
 
     return (
       <div className="App">
+        {this.state.page === 'create' && <CreateContact />}
+
         {/* A search query field that allows users to search for contacts. */}
         <SearchBox
           onQuery={this.updateSearchQuery}
