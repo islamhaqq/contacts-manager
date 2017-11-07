@@ -4,7 +4,7 @@ import escapeRegExp from 'escape-string-regexp'
 import ListContacts from '../components/ListContacts'
 import SearchBox from '../components/SearchBox'
 import * as ContactsAPI from '../utils/ContactsAPI'
-import CreateContact from './CreateContact'
+import CreateContactPage from './CreateContactPage'
 
 /**
  * The root component of the app.
@@ -83,7 +83,7 @@ class App extends Component {
 
     return (
       <div className="App">
-        {this.state.page === 'create' && <CreateContact />}
+        {this.state.page === 'create' && <CreateContactPage />}
 
         {/* A search query field that allows users to search for contacts. */}
         <SearchBox
