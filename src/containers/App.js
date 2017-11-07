@@ -89,16 +89,14 @@ class App extends Component {
 
         {/* display how many contacts showing out of total when filtered */}
         {filteredContacts.length !== this.state.allContacts.length &&
-          (
-            <div className="showing-contacts">
-              <span>
-                Now showing {filteredContacts.length} of {this.state.allContacts.length} contacts
-              </span>
-              <button onClick={() => this.updateSearchQuery('')}>
-                Show All
-              </button>
-            </div>
-          )
+          <div className="showing-contacts">
+            <span>
+              Now showing {filteredContacts.length} of {this.state.allContacts.length} contacts
+            </span>
+            <button onClick={() => this.updateSearchQuery('')}>
+              Show All
+            </button>
+          </div>
         }
 
         {/* List of contacts. */}
