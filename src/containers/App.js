@@ -63,7 +63,14 @@ class App extends Component {
   }
 
   render() {
+    /**
+     * The contacts to display in a list that are being filtered via the
+     * search box.
+     * @type {RegExp}
+     */
     let filteredContacts
+
+    // if user's typing in the search box, look for contact names that match it
     if (this.state.searchQuery) {
       const matchSearchQuery = new RegExp(escapeRegExp(this.state.searchQuery), 'i')
 
@@ -71,7 +78,6 @@ class App extends Component {
     } else {
       filteredContacts = this.state.allContacts
     }
-
 
     return (
       <div className="App">
