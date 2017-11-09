@@ -1,6 +1,6 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import sortBy from 'sort-by'
+import React from 'react';
+import PropTypes from 'prop-types';
+import sortBy from 'sort-by';
 
 /**
  * All contacts with their details listed out in an ordered list.
@@ -8,7 +8,7 @@ import sortBy from 'sort-by'
  * @param {Array} contacts - All the contacts to list out.
  * @constructor
  */
-function ListContacts ({contacts, onDeleteContact, alphabetize = false}) {
+function ListContacts({ contacts, onDeleteContact, alphabetize = false }) {
   return (
     <ol className="contact-list">
       {/* alphabetize the contacts if requested by the parent component */}
@@ -36,7 +36,7 @@ function ListContacts ({contacts, onDeleteContact, alphabetize = false}) {
         </li>
       ))}
     </ol>
-  )
+  );
 }
 
 /**
@@ -61,7 +61,7 @@ ListContacts.propTypes = {
    * Whether to alphabetically sort the provided contacts. Defaults to false.
    * @type {Boolean}
    */
-  alphabetize: PropTypes.bool
-}
+  alphabetize: PropTypes.bool,
+};
 
-export default ListContacts
+export default ListContacts;

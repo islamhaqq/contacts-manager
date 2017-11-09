@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
-import escapeRegExp from 'escape-string-regexp'
+import React, { Component } from 'react';
+import escapeRegExp from 'escape-string-regexp';
 
-import ListContacts from '../components/ListContacts'
-import SearchBox from '../components/SearchBox'
-import * as ContactsAPI from '../utils/ContactsAPI'
+import ListContacts from '../components/ListContacts';
+import SearchBox from '../components/SearchBox';
+import * as ContactsAPI from '../utils/ContactsAPI';
 
 class ListContactsPage extends Component {
   /**
@@ -20,15 +20,15 @@ class ListContactsPage extends Component {
      * What the user input in the search box in an attempt to filter contacts.
      * @type {String}
      */
-    searchQuery: ''
-  }
+    searchQuery: '',
+  };
 
-  async componentDidMount () {
+  async componentDidMount() {
     try {
-      const allContacts = await ContactsAPI.getAll()
-      this.setState({ allContacts })
+      const allContacts = await ContactsAPI.getAll();
+      this.setState({ allContacts });
     } catch (error) {
-      throw new Error(error)
+      throw new Error(error);
     }
   }
 
@@ -41,10 +41,12 @@ class ListContactsPage extends Component {
   deleteContact = contactToDelete => {
     this.setState(currentState => ({
       // filter out the deleted contact
-      allContacts: currentState.allContacts.filter(contact => contactToDelete.id !== contact.id),
-      searchQuery: ''
-    }))
-  }
+      allContacts: currentState.allContacts.filter(
+        contact => contactToDelete.id !== contact.id,
+      ),
+      searchQuery: '',
+    }));
+  };
 
   /**
    * Update the input in the search box.
@@ -54,9 +56,9 @@ class ListContactsPage extends Component {
    */
   updateSearchQuery = query => {
     this.setState({
-      searchQuery: query
-    })
-  }
+      searchQuery: query,
+    });
+  };
 
   render() {
     /**
@@ -64,15 +66,20 @@ class ListContactsPage extends Component {
      * search box.
      * @type {RegExp}
      */
-    let filteredContacts
+    let filteredContacts;
 
     // if user's typing in the search box, look for contact names that match it
     if (this.state.searchQuery) {
-      const matchSearchQuery = new RegExp(escapeRegExp(this.state.searchQuery), 'i')
+      const matchSearchQuery = new RegExp(
+        escapeRegExp(this.state.searchQuery),
+        'i',
+      );
 
-      filteredContacts = this.state.allContacts.filter(contact => matchSearchQuery.test(contact.name))
+      filteredContacts = this.state.allContacts.filter(contact =>
+        matchSearchQuery.test(contact.name),
+      );
     } else {
-      filteredContacts = this.state.allContacts
+      filteredContacts = this.state.allContacts;
     }
 
     return (
@@ -84,16 +91,15 @@ class ListContactsPage extends Component {
         />
 
         {/* display how many contacts showing out of total when filtered */}
-        {filteredContacts.length !== this.state.allContacts.length &&
+        {filteredContacts.length !== this.state.allContacts.length && (
           <div className="showing-contacts">
             <span>
-              Now showing {filteredContacts.length} of {this.state.allContacts.length} contacts
+              Now showing {filteredContacts.length} of{' '}
+              {this.state.allContacts.length} contacts
             </span>
-            <button onClick={() => this.updateSearchQuery('')}>
-              Show All
-            </button>
+            <button onClick={() => this.updateSearchQuery('')}>Show All</button>
           </div>
-        }
+        )}
 
         {/* List of contacts. */}
         <ListContacts
@@ -102,8 +108,8 @@ class ListContactsPage extends Component {
           alphabetize
         />
       </div>
-    )
+    );
   }
 }
 
-export default ListContactsPage
+export default ListContactsPage;
