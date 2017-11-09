@@ -1,11 +1,20 @@
 import React, { Component } from 'react';
 import escapeRegExp from 'escape-string-regexp';
+import PropTypes from 'prop-types';
 
 import ListContacts from '../components/ListContacts';
 import SearchBox from '../components/SearchBox';
 import * as ContactsAPI from '../utils/ContactsAPI';
 
 class ListContactsPage extends Component {
+  static propTypes = {
+    /**
+     * A passed callback that updates the page displaying in the main view.
+     * @type {Function}
+     */
+    onNavigate: PropTypes.func.isRequired,
+  };
+
   /**
    * ESNext class field designated as component state.
    * See TC39 proposal: https://github.com/tc39/proposal-class-fields.
