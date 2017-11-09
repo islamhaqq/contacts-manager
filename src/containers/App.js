@@ -75,7 +75,7 @@ class App extends Component {
           <ListContactsPage
             allContacts={this.state.allContacts}
             onDeleteContact={this.deleteContact}
-            onNavigate={this.updatePage}
+            onNavigate={page => this.updatePage(page)}
           />
         )}
         {this.state.page === 'create' && <CreateContactPage />}

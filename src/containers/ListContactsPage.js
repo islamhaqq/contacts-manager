@@ -23,6 +23,7 @@ class ListContactsPage extends Component {
     onDeleteContact: PropTypes.func.isRequired,
     /**
      * A passed callback that updates the page displaying in the main view.
+     * Accepts page name as a parameter such as 'list' or 'create'
      * @type {Function}
      */
     onNavigate: PropTypes.func.isRequired,
@@ -84,6 +85,15 @@ class ListContactsPage extends Component {
             onQuery={this.updateSearchQuery}
             value={this.state.searchQuery}
           />
+
+          {/* A link that sends to create contacts page. */}
+          <a
+            onClick={() => this.props.onNavigate('create')}
+            href="create"
+            className="add-contact"
+          >
+            Add Contact
+          </a>
         </div>
 
         {/* display how many contacts showing out of total when filtered */}
