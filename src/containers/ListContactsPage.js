@@ -83,12 +83,14 @@ class ListContactsPage extends Component {
     }
 
     return (
-      <div>
-        {/* A search query field that allows users to search for contacts. */}
-        <SearchBox
-          onQuery={this.updateSearchQuery}
-          value={this.state.searchQuery}
-        />
+      <div className="list-contacts">
+        <div className="list-contacts-top">
+          {/* A search query field that allows users to search for contacts. */}
+          <SearchBox
+            onQuery={this.updateSearchQuery}
+            value={this.state.searchQuery}
+          />
+        </div>
 
         {/* display how many contacts showing out of total when filtered */}
         {filteredContacts.length !== this.state.allContacts.length && (
