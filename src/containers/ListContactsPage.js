@@ -4,10 +4,23 @@ import PropTypes from 'prop-types';
 
 import ListContacts from '../components/ListContacts';
 import SearchBox from '../components/SearchBox';
-import * as ContactsAPI from '../utils/ContactsAPI';
 
 class ListContactsPage extends Component {
+  /**
+   * All the props this container accepts.
+   * @type {Object}
+   */
   static propTypes = {
+    /**
+     * A passed callback that updates the page displaying in the main view.
+     * @type {Function}
+     */
+    allContacts: PropTypes.array.isRequired,
+    /**
+     * A passed callback that updates the page displaying in the main view.
+     * @type {Function}
+     */
+    onDeleteContact: PropTypes.func.isRequired,
     /**
      * A passed callback that updates the page displaying in the main view.
      * @type {Function}
@@ -21,41 +34,11 @@ class ListContactsPage extends Component {
    * @type {Object}
    */
   state = {
-    /** All the contacts to be rendered and listed out.
-     * @type {Array}
-     */
-    allContacts: [],
     /**
      * What the user input in the search box in an attempt to filter contacts.
      * @type {String}
      */
     searchQuery: '',
-  };
-
-  async componentDidMount() {
-    try {
-      // fetch all the contacts from api
-      const allContacts = await ContactsAPI.getAll();
-      this.setState({ allContacts });
-    } catch (error) {
-      throw new Error(error);
-    }
-  }
-
-  /**
-   * Deletes a contact.
-   * @method deleteContact
-   * @param  {Object} contactToDelete - The contact the user intends to delete.
-   * @return {Void}
-   */
-  deleteContact = contactToDelete => {
-    this.setState(currentState => ({
-      // filter out the deleted contact
-      allContacts: currentState.allContacts.filter(
-        contact => contactToDelete.id !== contact.id,
-      ),
-      searchQuery: '',
-    }));
   };
 
   /**
@@ -85,12 +68,12 @@ class ListContactsPage extends Component {
         'i',
       );
 
-      filteredContacts = this.state.allContacts.filter(contact =>
+      filteredContacts = this.props.allContacts.filter(contact =>
         matchSearchQuery.test(contact.name),
       );
     } else {
       // don't filter if searchbox empty
-      filteredContacts = this.state.allContacts;
+      filteredContacts = this.props.allContacts;
     }
 
     return (
@@ -104,11 +87,11 @@ class ListContactsPage extends Component {
         </div>
 
         {/* display how many contacts showing out of total when filtered */}
-        {filteredContacts.length !== this.state.allContacts.length && (
+        {filteredContacts.length !== this.props.allContacts.length && (
           <div className="showing-contacts">
             <span>
               Now showing {filteredContacts.length} of{' '}
-              {this.state.allContacts.length} contacts
+              {this.props.allContacts.length} contacts
             </span>
             <button onClick={() => this.updateSearchQuery('')}>Show All</button>
           </div>
@@ -117,7 +100,7 @@ class ListContactsPage extends Component {
         {/* List of contacts. */}
         <ListContacts
           contacts={filteredContacts}
-          onDeleteContact={this.deleteContact}
+          onDeleteContact={this.props.onDeleteContact}
           alphabetize
         />
       </div>
