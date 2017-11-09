@@ -65,7 +65,7 @@ class App extends Component {
 
   render() {
     // show the app is loading during ajax
-    if (this.state.isLoading && !this.state.allContacts.length) {
+    if (this.state.isLoading) {
       return <Loading />;
     }
 
