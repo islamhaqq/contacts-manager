@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import escapeRegExp from 'escape-string-regexp';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 import ListContacts from '../components/ListContacts';
 import SearchBox from '../components/SearchBox';
@@ -87,13 +88,13 @@ class ListContactsPage extends Component {
           />
 
           {/* A link that sends to create contacts page. */}
-          <a
+          <Link
             onClick={() => this.props.onNavigate('create')}
-            href="#create"
+            to="/create"
             className="add-contact"
           >
             Add Contact
-          </a>
+          </Link>
         </div>
 
         {/* display how many contacts showing out of total when filtered */}
