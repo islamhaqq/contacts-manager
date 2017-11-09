@@ -22,12 +22,6 @@ class ListContactsPage extends Component {
      * @type {Function}
      */
     onDeleteContact: PropTypes.func.isRequired,
-    /**
-     * A passed callback that updates the page displaying in the main view.
-     * Accepts page name as a parameter such as 'list' or 'create'
-     * @type {Function}
-     */
-    onNavigate: PropTypes.func.isRequired,
   };
 
   /**
@@ -88,11 +82,7 @@ class ListContactsPage extends Component {
           />
 
           {/* A link that sends to create contacts page. */}
-          <Link
-            onClick={() => this.props.onNavigate('create')}
-            to="/create"
-            className="add-contact"
-          >
+          <Link to="/create" className="add-contact">
             Add Contact
           </Link>
         </div>

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Route } from 'react-router-dom';
 
 import * as ContactsAPI from '../utils/ContactsAPI';
 import CreateContactPage from './CreateContactPage';
@@ -20,11 +21,6 @@ class App extends Component {
      */
     allContacts: [],
     isLoading: true,
-    /**
-     * The current page displaying in the main view.
-     * @type {String}
-     */
-    page: 'list', // ['list', 'create']
   };
 
   async componentDidMount() {
@@ -35,16 +31,6 @@ class App extends Component {
     } catch (error) {
       throw new Error(error);
     }
-  }
-
-  /**
-   * Updates the current page the app is displaying in its view.
-   * @method updatePage
-   * @param  {String} page - The name of the page to display.
-   * @return {Void}
-   */
-  updatePage(page) {
-    this.setState({ page });
   }
 
   /**
@@ -71,14 +57,20 @@ class App extends Component {
 
     return (
       <div className="App">
-        {this.state.page === 'list' && (
-          <ListContactsPage
-            allContacts={this.state.allContacts}
-            onDeleteContact={this.deleteContact}
-            onNavigate={page => this.updatePage(page)}
-          />
-        )}
-        {this.state.page === 'create' && <CreateContactPage />}
+        {/* Contact list page. */}
+        <Route
+          path="/"
+          render={() => (
+            <ListContactsPage
+              allContacts={this.state.allContacts}
+              onDeleteContact={this.deleteContact}
+            />
+          )}
+          exact
+        />
+
+        {/* Create contact page */}
+        <Route path="/create" component={CreateContactPage} />
       </div>
     );
   }
