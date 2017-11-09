@@ -34,6 +34,7 @@ class ListContactsPage extends Component {
 
   async componentDidMount() {
     try {
+      // fetch all the contacts from api
       const allContacts = await ContactsAPI.getAll();
       this.setState({ allContacts });
     } catch (error) {
@@ -73,7 +74,7 @@ class ListContactsPage extends Component {
     /**
      * The contacts to display in a list that are being filtered via the
      * search box.
-     * @type {RegExp}
+     * @type {Array}
      */
     let filteredContacts;
 
@@ -88,6 +89,7 @@ class ListContactsPage extends Component {
         matchSearchQuery.test(contact.name),
       );
     } else {
+      // don't filter if searchbox empty
       filteredContacts = this.state.allContacts;
     }
 
