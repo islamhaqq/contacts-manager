@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import * as ContactsAPI from '../utils/ContactsAPI';
 import CreateContactPage from './CreateContactPage';
 import ListContactsPage from './ListContactsPage';
+import Loading from '../components/Loading';
 
 /**
  * The root component of the app.
@@ -63,6 +64,10 @@ class App extends Component {
   };
 
   render() {
+    // show the app is loading during ajax
+    if (this.state.isLoading && !this.state.allContacts.length) {
+      return <Loading />;
+    }
 
     return (
       <div className="App">
