@@ -89,7 +89,7 @@ class ListContactsPage extends Component {
           {/* A link that sends to create contacts page. */}
           <a
             onClick={() => this.props.onNavigate('create')}
-            href="create"
+            href="#create"
             className="add-contact"
           >
             Add Contact
