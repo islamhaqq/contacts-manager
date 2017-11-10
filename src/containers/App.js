@@ -39,7 +39,7 @@ class App extends Component {
    * @param  {Object} contactToDelete - The contact the user intends to delete.
    * @return {Void}
    */
-  deleteContact = contactToDelete => {
+  deleteContact = async contactToDelete => {
     this.setState(currentState => ({
       // filter out the deleted contact
       allContacts: currentState.allContacts.filter(
@@ -47,6 +47,9 @@ class App extends Component {
       ),
       searchQuery: '',
     }));
+
+    // remove from API
+    await ContactsAPI.remove(contactToDelete);
   };
 
   /**
