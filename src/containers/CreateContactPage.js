@@ -1,15 +1,23 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import serializeForm from 'form-serialize';
 
 import ImageInput from './ImageInput';
 
 class CreateContactPage extends Component {
+  handleSubmit(event) {
+    event.preventDefault();
+
+    const serializedForm = serializeForm(event.target);
+    if (this.props.onCreateContact) this.props.onCreateContact(serializedForm);
+  }
+
   render() {
     return (
       <div>
         <Link to="/" className="close-create-contact" />
 
-        <form className="create-contact-form">
+        <form onSubmit={this.handleSubmit} className="create-contact-form">
           <ImageInput
             name="avatarUrl"
             className="create-contact-avatar-input"
