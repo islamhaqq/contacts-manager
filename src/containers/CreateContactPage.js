@@ -36,7 +36,7 @@ class CreateContactPage extends Component {
         <form onSubmit={this.handleSubmit} className="create-contact-form">
           {/* Upload avatar. */}
           <ImageInput
-            name="avatarUrl"
+            name="avatarURL"
             className="create-contact-avatar-input"
             maxHeight={64}
           />
