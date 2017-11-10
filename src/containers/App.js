@@ -49,6 +49,19 @@ class App extends Component {
     }));
   };
 
+  /**
+   * Creates a new contact in the database and also updates local state.
+   * @method createContact
+   * @param  {Object} contactFormData - Serialized create contact form.
+   * @return {Promise}
+   */
+  createContact = async contactFormData => {
+    const newContact = await ContactsAPI.create(contactFormData);
+    this.setState(previousState => ({
+      allContacts: this.previousState.allContacts.push(newContact),
+    }));
+  };
+
   render() {
     // show the app is loading during ajax
     if (this.state.isLoading) {
@@ -70,7 +83,12 @@ class App extends Component {
         />
 
         {/* Create contact page */}
-        <Route path="/create" component={CreateContactPage} />
+        <Route
+          path="/create"
+          render={() => (
+            <CreateContactPage onCreateContact={this.createContact} />
+          )}
+        />
       </div>
     );
   }
