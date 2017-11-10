@@ -88,8 +88,14 @@ class App extends Component {
         {/* Create contact page */}
         <Route
           path="/create"
-          render={() => (
-            <CreateContactPage onCreateContact={this.createContact} />
+          render={({ history }) => (
+            <CreateContactPage
+              onCreateContact={contact => {
+                this.createContact(contact);
+                // redirect to list view
+                history.push('/');
+              }}
+            />
           )}
         />
       </div>
