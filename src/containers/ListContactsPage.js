@@ -68,7 +68,7 @@ class ListContactsPage extends Component {
         matchSearchQuery.test(contact.name),
       );
     } else {
-      // don't filter if searchbox empty
+      // don't filter if searchbox is empty
       filteredContacts = this.props.allContacts;
     }
 
@@ -87,7 +87,7 @@ class ListContactsPage extends Component {
           </Link>
         </div>
 
-        {/* display how many contacts showing out of total when filtered */}
+        {/* Displays how many contacts showing out of total when filtered */}
         {filteredContacts.length !== this.props.allContacts.length && (
           <div className="showing-contacts">
             <span>
