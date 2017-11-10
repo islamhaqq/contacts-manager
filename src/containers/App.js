@@ -58,7 +58,7 @@ class App extends Component {
   createContact = async contactFormData => {
     const newContact = await ContactsAPI.create(contactFormData);
     this.setState(previousState => ({
-      allContacts: this.previousState.allContacts.push(newContact),
+      allContacts: previousState.allContacts.concat([newContact]),
     }));
   };
 

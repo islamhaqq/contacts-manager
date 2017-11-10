@@ -20,13 +20,13 @@ class CreateContactPage extends Component {
    * @param  {Object} event - Native DOM event emitted on form submission.
    * @return {Void}
    */
-  handleSubmit(event) {
+  handleSubmit = event => {
     event.preventDefault();
 
     // create contact
-    const serializedForm = serializeForm(event.target);
+    const serializedForm = serializeForm(event.target, { hash: true });
     this.props.onCreateContact(serializedForm);
-  }
+  };
 
   render() {
     return (
